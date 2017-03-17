@@ -38,13 +38,9 @@ app.use('/public', static(path.join(__dirname, 'public')));
 // cookie-parser 설정
 app.use(cookieParser());
 
-var router = express.Router();
-//라우터 객체 등록
-app.use('/', router);
-
 // 텔레그램 라우팅 설정(텔레그램용 라우터 정보, 추후 다른 종류의 라우팅이 필요하면 routes에 파일생성해서 넣자)
 var telegram = require('./routes/telegram');
-telegram(router);
+app.use('/', telegram);
 console.log("텔레그램 라우팅 설정");
 
 
